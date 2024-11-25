@@ -133,7 +133,6 @@ spec:
   containers:
   
   - name: nginx
-  - 
     image: nginx:latest
     
 2. Apply the manifest:
