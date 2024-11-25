@@ -44,3 +44,15 @@ Handles networking on worker nodes to ensure seamless communication between pods
 Executes and manages containers on the node.
 
 ## Kubernetes Cluster SetUp with KOPS
+KOPS (Kubernetes Operations) is a tool used to create, manage, and maintain Kubernetes clusters in various cloud environments. It is especially well-known for its seamless integration with AWS, making it one of the most popular tools for managing Kubernetes clusters on AWS
+###### Prerequisites:
+1. DNS name
+2. AWS account
+3. One t2.medium EC2 (linux) instance ( management server, maintains the cluster). Generate ssh ( will use this to access nodes)
+4. Download KOPS & Kubectl (command-line tool to interact with kuberentes cluster)
+
+### steps 
+1. Install KOPS by copying the below command to /usr/local/bin. Change Permissions
+    https://github.com/kubernetes/kops/releases/download/v1.30.1/kops-linux-amd64
+    mv kops-linux-amd64 kops
+    chmod 777 kops
