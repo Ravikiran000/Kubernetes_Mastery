@@ -48,11 +48,105 @@ KOPS (Kubernetes Operations) is a tool used to create, manage, and maintain Kube
 ###### Prerequisites:
 1. DNS name
 2. AWS account
-3. One t2.medium EC2 (linux) instance ( management server, maintains the cluster). Generate ssh ( will use this to access nodes)
+3. One t3.medium EC2 (linux) instance ( management server, maintains the cluster). Generate ssh ( will use this to access nodes)
 4. Download KOPS & Kubectl (command-line tool to interact with kuberentes cluster)
 
 ### steps 
-1. Install KOPS by copying the below command to /usr/local/bin. Change Permissions
-    https://github.com/kubernetes/kops/releases/download/v1.30.1/kops-linux-amd64
-    mv kops-linux-amd64 kops
-    chmod 777 kops
+1. Generate ssh key (copy the name of the keyfile, it will be something like id_ed25519.pub)
+   ssh-keygen
+
+1. Install KOPS by copying the below command to /usr/local/bin. Change Permissions.
+   wget https://github.com/kubernetes/kops/releases/download/v1.30.1/kops-linux-amd64
+
+   mv kops-linux-amd64 kops
+
+   chmod 777 kops
+2. Install Kubectl by copying the below command to /usr/local/bin & change permissions
+   curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+
+   chmod 777 kubectl
+
+   check kops & kubectl version
+
+   kubectl version 
+
+   kops version
+4. Edit .bashrc and add all the env variables ( Automatically pickup env values like cluster name, s3 bucket after restart if the cluster is down for some reason)
+   vim .bashrc
+   export NAME=example.in
+     
+   export KOPS_STATE_STORE=s3://example.in
+   
+   export AWS_REGION=us-east-1
+   
+   export CLUSTER_NAME=example.in
+   
+   export EDITOR='/usr/bin/nano'
+
+   change the "example.in" to your domain name
+
+   Apply the changes
+   
+   source .bashrc
+   
+6. Generate a cluster file and save it carefully and do neccessary changes. The below command will give you a yaml manifest but not directly create a cluster, copy that into a file named cluster.yml
+
+kops create cluster --name=example.in \
+--state=s3://example.in --zones=us-east-1a,us-east-1b \
+--node-count=2 --control-plane-count=1 --node-size=t3.medium --control-plane-size=t3.medium \
+--control-plane-zones=us-east-1a --control-plane-volume-size 10 --node-volume-size 10 \
+--ssh-public-key ~/.ssh/id_ed25519.pub \
+--dns-zone=example.in --dry-run --output yaml
+
+7. Run below commands to create the cluster 
+  kops create -f cluster.yml
+
+  kops update cluster --name example.in --yes --admin
+
+  kops validate cluster --wait 10m
+
+  Your cluster is ready.
+  
+8. Check the nodes creation
+   kubectl get nodes
+9. Deploy resources on the Kubernetes cluster
+   
+Imperative Approach:
+
+kubectl run testpod1 --image=nginx:latest --dry-run=client -o yaml
+
+Note: This generates the YAML manifest without creating the pod.
+
+Declarative Approach (Using YAML or JSON): 
+1. Create a file pod.yaml with the following content:
+
+apiVersion: v1
+
+kind: Pod
+
+metadata:
+
+  name: testpod1
+  
+spec:
+
+  containers:
+  
+  - name: nginx
+  - 
+    image: nginx:latest
+    
+2. Apply the manifest:
+
+kubectl apply -f pod.yaml
+
+3. Run Pod Directly:
+
+kubectl run testpod1 --image=nginx:latest
+
+Get Pods:
+
+kubectl get pods
+
+### After your tasks are done, don't forget to delete the cluster
+kops delete -f cluster.yml  --yes
