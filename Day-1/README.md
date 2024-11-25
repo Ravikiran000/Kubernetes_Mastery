@@ -17,7 +17,7 @@ Kubernetes (often abbreviated as K8s) is an open-source container orchestration 
 Kubernetes uses a master-worker model, where the Control Plane (master components) manages the cluster, and the Worker Nodes run the application workloads. 
 ![image](https://github.com/user-attachments/assets/dca62900-b30a-43bd-bb58-85bc882383a2)
 
-#### 1. Control Plane:
+#### 1. Control Plane (Master Node Components)
 The Control Plane is the brain of Kubernetes. It manages the state of the cluster, handles user requests, and coordinates activities between the worker nodes.
 ##### a. API Server (kube-apiserver)
 The API server is the front-end for Kubernetes. All interactions with the cluster go through the API Server. It processes API requests and updates the state of the cluster in etcd.
@@ -26,9 +26,21 @@ A highly available key-value store that holds the cluster state. Stores all conf
 ##### c. Scheduler (kube-scheduler)
 Assigns workloads (pods) to worker nodes based on available resources and constraints. Supports advanced scheduling policies for complex workloads.
 ##### d. Controller Manager (kube-controller-manager)
-Purpose: Runs controllers that ensure the cluster's desired state is maintained.
+Runs controllers that ensure the cluster's desired state is maintained.
   ###### Responsibilities:
   Node Controller: Monitors node health and performs recovery operations.
   Replication Controller: Ensures the desired number of pod replicas are running.
   Endpoint Controller: Updates service endpoints when pods are added or removed.
   Service Account Controller: Manages service accounts and API tokens.
+##### e. Cloud Controller Manager (Optional)
+Integrates Kubernetes with cloud-specific resources. Manages load balancers, storage provisioning, and networking in cloud environments. Enables Kubernetes to function in hybrid or multi-cloud setups.
+#### 2. Data Plane (Worker Node Components)
+Worker nodes are the machines (virtual or physical) that run the containerized application workloads. Each worker node contains essential components to execute and manage containers.
+##### a. kubelet
+The primary agent running on each worker node, responsible for managing the state of containers. Communicates with the control plane to receive pod definitions. Ensures containers are running as per the pod specifications. Monitors container health and reports node status back to the API server.
+##### b. kube-proxy
+Handles networking on worker nodes to ensure seamless communication between pods and services.
+##### c. Container Runtime
+Executes and manages containers on the node.
+
+## Kubernetes Cluster SetUp with KOPS
