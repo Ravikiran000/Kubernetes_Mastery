@@ -18,14 +18,14 @@ ReplicaSet is a resource that ensures a specified number of replicas (instances)
 #### Namespaces
 Namespaces are used to divide cluster resources between multiple users. They are useful for scenarios where multiple teams (e.g., Alpha and Bravo teams) share the same cluster but require resource isolation.
 
-#### services
+#### Services
 Services provide stable IP addresses and DNS names to Pods. They allow you to expose your applications within or outside the cluster.
 ##### Types of Services
 ###### 1. ClusterIP (Default):
 - Purpose: Exposes the Service only within the cluster.
 - Use Case: Internal communication between components within the cluster.
 ###### 2. NodePort:
-- Purpose: Exposes the Service on a static port (the NodePort) on each node in the cluster.
+- Purpose: Opens a specific port (NodePort) on each Kubernetes node to expose the Service externally.
 - Use Case: Makes the Service accessible from outside the cluster using <NodeIP>:<NodePort>.
 ###### 3. LoadBalancer:
 - Purpose: Exposes the Service externally using a cloud provider's load balancer.
