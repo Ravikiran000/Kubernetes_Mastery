@@ -14,3 +14,19 @@ ReplicaSet is a resource that ensures a specified number of replicas (instances)
 - When you create a Deployment, Kubernetes automatically creates and manages a ReplicaSet for you.
 - The Deployment ensures that the ReplicaSet has the correct number of Pods.
 - If you update the Deployment (e.g., change the container image), Kubernetes creates a new ReplicaSet for the updated Pods and gradually shifts traffic to the new ReplicaSet while scaling down the old one (rolling update).
+
+#### Namespaces
+Namespaces are used to divide cluster resources between multiple users. They are useful for scenarios where multiple teams (e.g., Alpha and Bravo teams) share the same cluster but require resource isolation.
+
+#### services
+Services provide stable IP addresses and DNS names to Pods. They allow you to expose your applications within or outside the cluster.
+##### Types of Services
+###### 1. ClusterIP (Default):
+- Purpose: Exposes the Service only within the cluster.
+- Use Case: Internal communication between components within the cluster.
+###### 2. NodePort:
+- Purpose: Exposes the Service on a static port (the NodePort) on each node in the cluster.
+- Use Case: Makes the Service accessible from outside the cluster using <NodeIP>:<NodePort>.
+###### 3. LoadBalancer:
+- Purpose: Exposes the Service externally using a cloud provider's load balancer.
+- Use Case: Provides an externally accessible IP address, suitable for internet-facing applications.
