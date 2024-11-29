@@ -1,4 +1,4 @@
-# PODS | DEPLOYMENTS | REPLICASETS | NAMESPACES | SERVICES 
+## Overview on PODS | DEPLOYMENTS | REPLICASETS | NAMESPACES | SERVICES 
 
 #### Pod
 Pods are the smallest and simplest unit of deployment. A pod represents a single instance of a running process in a cluster and can contain one or more containers, usually Docker containers. 
