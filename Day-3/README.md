@@ -109,4 +109,4 @@ spec:
 ```
 - Update the Deployment manifest file (e.g., change the container image or resource limits).
 - Apply the updated manifest:
- - kubectl apply -f deployment.yaml
+       - kubectl apply -f deployment.yaml
