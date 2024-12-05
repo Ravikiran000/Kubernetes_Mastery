@@ -47,6 +47,7 @@ spec:
         - containerPort: 80
 ```
 #### Explanation of the Deployment file:
+```
 1. apiVersion: apps/v1
 - Specifies the API version for the Deployment resource. apps/v1 is the stable API version for Deployments.
 2. kind: Deployment
@@ -68,3 +69,4 @@ spec:
 -         4.3.2.1.1 name: Name of the container (my-container).
 -         4.3.2.1.2 image: The Docker image to use (nginx:1.21).
 -         4.3.2.1.3 ports: Defines which container port should be exposed. In this case, port 80.
+```
