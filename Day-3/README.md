@@ -110,3 +110,13 @@ spec:
 - Update the Deployment manifest file (e.g., change the container image or resource limits).
 - Apply the updated manifest:
    - kubectl apply -f deployment.yaml
+
+### DaemonSets
+A DaemonSet ensures that a copy of a Pod runs on all or specific nodes in the cluster. This is useful for cluster-wide services or node-specific applications. 
+##### Use Cases:
+- System Monitoring: Running tools like Prometheus Node Exporter or Fluentd on all nodes.
+- Log Collection: Running log collectors that aggregate logs from all nodes.
+##### Key Features:
+- One Pod Per Node: A DaemonSet creates exactly one Pod per eligible node.
+- Automatic Pod Management: Pods are automatically added or removed when nodes are added to or removed from the cluster.
+- Node Selectors and Taints: DaemonSets can target specific nodes using labels or tolerate taints to schedule Pods only on particular nodes.
