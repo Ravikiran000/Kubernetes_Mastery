@@ -17,7 +17,9 @@ In Kubernetes, a Deployment is a higher-level abstraction that manages a set of 
 
 #### Deployment Architecture
 A Deployment works with the following Kubernetes objects:
+
 ReplicaSet:
 - A Deployment automatically creates and manages a ReplicaSet to maintain the desired number of Pods.
+
 Pods:
 - The ReplicaSet created by the Deployment manages the actual Pods that run the application containers.
