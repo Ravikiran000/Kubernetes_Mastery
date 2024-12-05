@@ -76,14 +76,14 @@ Specifies the desired state of the Deployment.
 
 #### Common Deployment Operations
 1. Creating a Deployment:
-   - kubectl apply -f deployment.yaml
+- kubectl apply -f deployment.yaml
 2. Viewing a Deployment:
-   - kubectl get deployments
+- kubectl get deployments
 3. Scaling a Deployment:
-   - kubectl scale deployment my-app --replicas=5
+- kubectl scale deployment my-app --replicas=5
 4. Update the image in the Deployment manifest and reapply:
-   - kubectl apply -f deployment.yaml
+- kubectl apply -f deployment.yaml
 5. Rolling Back a Deployment to a previous version:
-   - kubectl rollout undo deployment my-app
+- kubectl rollout undo deployment my-app
 6. Checking Deployment rollout history:
-   - kubectl rollout history deployment my-app
+- kubectl rollout history deployment my-app
