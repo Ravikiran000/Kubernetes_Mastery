@@ -3,24 +3,24 @@
 ### Deployment
 In Kubernetes, a Deployment is a higher-level abstraction that manages a set of Pods (replicas of an application) and ensures they are available, up-to-date, and running as intended. Deployments provide declarative updates to applications, making it easier to manage, roll out, and scale them.
 #### Key Features of Deployments
-1. Declarative Management: You define the desired state of your application (e.g., number of replicas, container images, etc.) in a YAML or JSON manifest, and Kubernetes ensures that the actual state matches the desired state.
+1. **Declarative Management**: You define the desired state of your application (e.g., number of replicas, container images, etc.) in a YAML or JSON manifest, and Kubernetes ensures that the actual state matches the desired state.
 
-2. Replica Management: Deployments manage the number of replicas (instances) of an application to ensure high availability.
+2. **Replica Management**: Deployments manage the number of replicas (instances) of an application to ensure high availability.
 
-3. Rolling Updates: Deployments enable rolling updates to incrementally replace old versions of Pods with new ones, minimizing downtime.
+3. **Rolling Updates**: Deployments enable rolling updates to incrementally replace old versions of Pods with new ones, minimizing downtime.
 
-4. Rollback: If an update causes issues, you can roll back to a previous version using the Deployment's revision history.
+4. **Rollback**: If an update causes issues, you can roll back to a previous version using the Deployment's revision history.
 
-5. Self-Healing: If a Pod crashes or is terminated, the Deployment ensures a new Pod is created to maintain the desired state.
+5. **Self-Healing**: If a Pod crashes or is terminated, the Deployment ensures a new Pod is created to maintain the desired state.
 
-6. Scaling: Deployments allow you to scale your application horizontally by increasing or decreasing the number of replicas.
+6. **Scaling**: Deployments allow you to scale your application horizontally by increasing or decreasing the number of replicas.
 
 #### Deployment Architecture
 A Deployment works with the following Kubernetes objects:
 
-ReplicaSet: A Deployment automatically creates and manages a ReplicaSet to maintain the desired number of Pods.
+**ReplicaSet**: A Deployment automatically creates and manages a ReplicaSet to maintain the desired number of Pods.
 
-Pods: The ReplicaSet created by the Deployment manages the actual Pods that run the application containers.
+**Pods**: The ReplicaSet created by the Deployment manages the actual Pods that run the application containers.
 
 ### Example Deployment YAML
 ```
@@ -114,9 +114,44 @@ spec:
 ### DaemonSets
 A DaemonSet ensures that a copy of a Pod runs on all or specific nodes in the cluster. This is useful for cluster-wide services or node-specific applications. 
 ##### Use Cases:
-- System Monitoring: Running tools like Prometheus Node Exporter or Fluentd on all nodes.
-- Log Collection: Running log collectors that aggregate logs from all nodes.
+- **System Monitoring**: Running tools like Prometheus Node Exporter or Fluentd on all nodes.
+- **Log Collection**: Running log collectors that aggregate logs from all nodes.
 ##### Key Features:
-- One Pod Per Node: A DaemonSet creates exactly one Pod per eligible node.
-- Automatic Pod Management: Pods are automatically added or removed when nodes are added to or removed from the cluster.
-- Node Selectors and Taints: DaemonSets can target specific nodes using labels or tolerate taints to schedule Pods only on particular nodes.
+- **One Pod Per Node**: A DaemonSet creates exactly one Pod per eligible node.
+- **Automatic Pod Management**: Pods are automatically added or removed when nodes are added to or removed from the cluster.
+- **Node Selectors and Taints**: DaemonSets can target specific nodes using labels or tolerate taints to schedule Pods only on particular nodes.
+##### Example DaemonSet YAML:
+```
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: log-collector
+spec:
+  selector:
+    matchLabels:
+      app: log-collector
+  template:
+    metadata:
+      labels:
+        app: log-collector
+    spec:
+      containers:
+      - name: fluentd
+        image: fluent/fluentd:v1.12
+        resources:
+          limits:
+            memory: "200Mi"
+            cpu: "100m"
+```
+### StatefulSets
+A StatefulSet is designed for applications that require persistent storage and stable network identities for each Pod.
+#### Key Features:
+- **Stable Pod Identity**: Pods in a StatefulSet have unique, stable names (e.g., my-app-0, my-app-1) and maintain their identity across rescheduling.
+- **Ordered Deployment and Scaling**: Pods are created or deleted one at a time in order, ensuring safe updates for stateful applications.
+- **Persistent Storage**: Each Pod gets its own PersistentVolumeClaim (PVC) that retains data even if the Pod is deleted or rescheduled.
+
+## Interview Questions
+#### What is the difference between Deployments, DaemonSets, and StatefulSets?
+- **Deployments**: Used for stateless applications, allowing for scaling up and down without dependencies on pod names.
+- **DaemonSets**: Ensure one pod per node, typically used for log collection and monitoring.
+- **StatefulSets**: Maintain pod identity, crucial for stateful applications like databases.
