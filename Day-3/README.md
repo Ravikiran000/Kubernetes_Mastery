@@ -14,3 +14,10 @@ In Kubernetes, a Deployment is a higher-level abstraction that manages a set of 
 5. Self-Healing: If a Pod crashes or is terminated, the Deployment ensures a new Pod is created to maintain the desired state.
 
 6. Scaling: Deployments allow you to scale your application horizontally by increasing or decreasing the number of replicas.
+
+#### Deployment Architecture
+A Deployment works with the following Kubernetes objects:
+ReplicaSet:
+- A Deployment automatically creates and manages a ReplicaSet to maintain the desired number of Pods.
+Pods:
+- The ReplicaSet created by the Deployment manages the actual Pods that run the application containers.
