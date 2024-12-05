@@ -87,3 +87,13 @@ Specifies the desired state of the Deployment.
 - kubectl rollout undo deployment my-app
 6. Checking Deployment rollout history:
 - kubectl rollout history deployment my-app
+
+#### Exposing the Deployment
+kubectl expose deployment my-app --name sv1 --port 8000 --target-port 80 --type NodePort
+
+- It creates a service named sv1 for the deployment testapp.
+- The service will be accessible on port 8000 on all nodes in the cluster.
+- Traffic to port 8000 will be forwarded to port 80 on the containers of the testapp deployment.
+- The service type is NodePort, so Kubernetes will allocate a port from a range (default 30000-32767) on each node to forward traffic to the service.
+- If your cluster node has an IP address of 192.168.1.1 and Kubernetes assigns a NodePort of 30080, you can access your service at http://192.168.1.1:30080, and it will redirect traffic to port 80 on the containers of your my-app deployment.
+#### Rolling Update
