@@ -97,3 +97,13 @@ kubectl expose deployment my-app --name sv1 --port 8000 --target-port 80 --type 
 - The service type is NodePort, so Kubernetes will allocate a port from a range (default 30000-32767) on each node to forward traffic to the service.
 - If your cluster node has an IP address of 192.168.1.1 and Kubernetes assigns a NodePort of 30080, you can access your service at http://192.168.1.1:30080, and it will redirect traffic to port 80 on the containers of your my-app deployment.
 #### Rolling Update
+
+```
+spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      minReadySeconds: 10  # This specifies the minimum time (in seconds) a newly created Pod must be ready (i.e., in the "Ready" state) before it is considered "available" for serving traffic.
+      maxUnavailable: 25%  # Up to 25% of the Pods can be unavailable during the update
+      maxSurge: 1          # Allows 1 additional Pod above the desired count. If the Deployment has 4 replicas, maxSurge: 1 allows up to 5 Pods during the update process.
+```
