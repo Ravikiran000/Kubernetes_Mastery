@@ -73,3 +73,17 @@ Specifies the desired state of the Deployment.
          4.3.2.1.2 image: The Docker image to use (nginx:1.21).
          4.3.2.1.3 ports: Defines which container port should be exposed. In this case, port 80.
 ```
+
+#### Common Deployment Operations
+1. Creating a Deployment:
+   - kubectl apply -f deployment.yaml
+2. Viewing a Deployment:
+   - kubectl get deployments
+3. Scaling a Deployment:
+   - kubectl scale deployment my-app --replicas=5
+4. Update the image in the Deployment manifest and reapply:
+   - kubectl apply -f deployment.yaml
+5. Rolling Back a Deployment to a previous version:
+   - kubectl rollout undo deployment my-app
+6. Checking Deployment rollout history:
+   - kubectl rollout history deployment my-app
