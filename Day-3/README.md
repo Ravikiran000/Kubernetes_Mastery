@@ -23,7 +23,7 @@ ReplicaSet: A Deployment automatically creates and manages a ReplicaSet to maint
 Pods: The ReplicaSet created by the Deployment manages the actual Pods that run the application containers.
 
 ### Example Deployment YAML
-'''
+```
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -46,4 +46,4 @@ spec:
         ports:
         - containerPort: 80
 
-'''
+```
