@@ -21,3 +21,29 @@ A Deployment works with the following Kubernetes objects:
 ReplicaSet: A Deployment automatically creates and manages a ReplicaSet to maintain the desired number of Pods.
 
 Pods: The ReplicaSet created by the Deployment manages the actual Pods that run the application containers.
+
+### Example Deployment YAML
+'''
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app
+  labels:
+    app: my-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+      - name: my-container
+        image: nginx:1.21
+        ports:
+        - containerPort: 80
+
+'''
