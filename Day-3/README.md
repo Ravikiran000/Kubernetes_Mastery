@@ -48,23 +48,23 @@ spec:
 ```
 #### Explanation of the Deployment file:
 1. apiVersion: apps/v1
-Specifies the API version for the Deployment resource. apps/v1 is the stable API version for Deployments.
+- Specifies the API version for the Deployment resource. apps/v1 is the stable API version for Deployments.
 2. kind: Deployment
-Indicates that this resource is a Deployment.
+- Indicates that this resource is a Deployment.
 3. metadata
-  3.1 name: The name of the Deployment (my-app).
-  3.2 labels: Metadata labels to categorize and identify the Deployment. Here, the label app: my-app is applied.
+-   3.1 name: The name of the Deployment (my-app).
+-   3.2 labels: Metadata labels to categorize and identify the Deployment. Here, the label app: my-app is applied.
 4. spec
-Specifies the desired state of the Deployment.
-  4.1 replicas: 3: Specifies that 3 replicas (pods) of the application should be running.
-  4.2 selector:
-    4.2.1 matchLabels: Ensures that the pods managed by this Deployment are identified by the label app: my-app.
-  4.3 template:
-  Describes the pod template for the Deployment. Pods created by the Deployment will match this template.
-    4.3.1 metadata:
-      4.3.1.1 labels: Labels applied to pods. These must match the Deployment's selector.
-    4.3.2 spec:
-      4.3.2.1 containers: Specifies the containers in each pod.
-         4.3.2.1.1 name: Name of the container (my-container).
-         4.3.2.1.2 image: The Docker image to use (nginx:1.21).
-         4.3.2.1.3 ports: Defines which container port should be exposed. In this case, port 80.
+- Specifies the desired state of the Deployment.
+-   4.1 replicas: 3: Specifies that 3 replicas (pods) of the application should be running.
+-   4.2 selector:
+-     4.2.1 matchLabels: Ensures that the pods managed by this Deployment are identified by the label app: my-app.
+-   4.3 template:
+-     Describes the pod template for the Deployment. Pods created by the Deployment will match this template.
+-     4.3.1 metadata:
+-       4.3.1.1 labels: Labels applied to pods. These must match the Deployment's selector.
+-     4.3.2 spec:
+-       4.3.2.1 containers: Specifies the containers in each pod.
+-         4.3.2.1.1 name: Name of the container (my-container).
+-         4.3.2.1.2 image: The Docker image to use (nginx:1.21).
+-         4.3.2.1.3 ports: Defines which container port should be exposed. In this case, port 80.
