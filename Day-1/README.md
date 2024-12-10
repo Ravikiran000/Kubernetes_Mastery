@@ -92,14 +92,14 @@ KOPS (Kubernetes Operations) is a tool used to create, manage, and maintain Kube
    source .bashrc
    
 6. Generate a cluster file and save it carefully and do neccessary changes. The below command will give you a yaml manifest but not directly create a cluster, copy that into a file named cluster.yml
-
+```
 kops create cluster --name=example.in \
 --state=s3://example.in --zones=us-east-1a,us-east-1b \
 --node-count=2 --control-plane-count=1 --node-size=t3.medium --control-plane-size=t3.medium \
 --control-plane-zones=us-east-1a --control-plane-volume-size 10 --node-volume-size 10 \
 --ssh-public-key ~/.ssh/id_ed25519.pub \
 --dns-zone=example.in --dry-run --output yaml
-
+```
 7. Run below commands to create the cluster 
   kops create -f cluster.yml
 
