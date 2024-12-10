@@ -49,7 +49,9 @@ KOPS (Kubernetes Operations) is a tool used to create, manage, and maintain Kube
 1. DNS name
 2. AWS account
 3. One t3.medium EC2 (linux) instance ( management server, maintains the cluster). Generate ssh ( will use this to access nodes)
-4. Download KOPS & Kubectl (command-line tool to interact with kuberentes cluster)
+4. s3 bucket with name same as your domain (example.in)
+5. IAM role to attach to your management instance
+6. Download KOPS & Kubectl (command-line tool to interact with kuberentes cluster)
 
 ### steps 
 1. Generate ssh key (copy the name of the keyfile, it will be something like id_ed25519.pub)
