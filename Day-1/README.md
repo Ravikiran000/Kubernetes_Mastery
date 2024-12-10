@@ -48,7 +48,7 @@ KOPS (Kubernetes Operations) is a tool used to create, manage, and maintain Kube
 ###### Prerequisites:
 1. DNS name
 2. AWS account
-3. One t3.medium EC2 (linux) instance ( management server, maintains the cluster). Generate ssh ( will use this to access nodes)
+3. One t2.medium EC2 (linux) instance ( management server, maintains the cluster). Generate ssh ( will use this to access nodes)
 4. s3 bucket with name same as your domain (example.in)
 5. IAM role to attach to your management instance
 6. Download KOPS & Kubectl (command-line tool to interact with kuberentes cluster)
@@ -79,7 +79,7 @@ KOPS (Kubernetes Operations) is a tool used to create, manage, and maintain Kube
      
    export KOPS_STATE_STORE=s3://example.in
    
-   export AWS_REGION=us-east-1
+   export AWS_REGION=ap-south-1
    
    export CLUSTER_NAME=example.in
    
@@ -94,9 +94,9 @@ KOPS (Kubernetes Operations) is a tool used to create, manage, and maintain Kube
 6. Generate a cluster file and save it carefully and do neccessary changes. The below command will give you a yaml manifest but not directly create a cluster, copy that into a file named cluster.yml
 ```
 kops create cluster --name=example.in \
---state=s3://example.in --zones=us-east-1a,us-east-1b \
---node-count=2 --control-plane-count=1 --node-size=t3.medium --control-plane-size=t3.medium \
---control-plane-zones=us-east-1a --control-plane-volume-size 10 --node-volume-size 10 \
+--state=s3://example.in --zones=ap-south-1a,ap-south-1b \
+--node-count=2 --control-plane-count=1 --node-size=t2.medium --control-plane-size=t2.medium \
+--control-plane-zones=ap-south-1a --control-plane-volume-size 10 --node-volume-size 10 \
 --ssh-public-key ~/.ssh/id_ed25519.pub \
 --dns-zone=example.in --dry-run --output yaml
 ```
