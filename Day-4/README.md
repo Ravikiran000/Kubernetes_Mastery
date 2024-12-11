@@ -58,8 +58,8 @@ while true; do curl -sL http://<node-ip>:<node-port> | grep -i 'IP A'; sleep 1; 
 **NOTE**: NodePort Service is not suitable for production as the NodePort cannot be given to the customer.
 
 ### LoadBalancer:
-Exposes the Service externally using a cloud provider's load balancer.
-**Use Case**: Production applications that require external access with automatic scaling.
+- Exposes the Service externally using a cloud provider's load balancer.
+- **Use Case**: Production applications that require external access with automatic scaling.
 
 ### LoadBalancer Implementation:
 1. Deploy an application and expose it using LoadBalancer Service type
@@ -69,5 +69,6 @@ kubectl expose deployment app1 --port 80 --target-port 80 --type LoadBalancer
 ```
 This will create a loadbalancer. Go to the AWS console. Add the LoadBalancer DNS to Route 53 by creating an A record. Give www as subdomain before actual domain (example.in)
 
-2. Access the application on the browser
+2. Access the application on the browser.
+
 www.example.in
