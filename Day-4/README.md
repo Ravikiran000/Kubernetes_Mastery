@@ -23,6 +23,7 @@ nslookup app1
 curl http://app1
 ```
 You can't access the application,since you are not inside the cluster and using ClusterIP service type.
+
 3. Create a pod which has troubleshooting tools like nslookup, curl, etc and login to the pod and try to access the deployment.
 ```
 kubectl run troubleshootpod --image kiran2361993/troubleshootingtools:v1
