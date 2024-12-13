@@ -5,7 +5,7 @@ This guide will help you set up Ingress Controllers, generate SSL keys, deploy I
 ```
 sudo snap install --classic certbot
 
-certbot certonly --manual --preferred-challenges-dns --key-type rsa --email your-email@gmail.com \
+certbot certonly --manual --preferred-challenges=dns --key-type rsa --email your-email@gmail.com \
 --server https://acme-v02.api.letsencrypt.org/directory --agree-tos -d *.your-dns.com
 ```
 2. Copy the "_acme-challenge.your-dns.in" & create a TXT record in with name as "_acme-challenge" and it's respective value.
