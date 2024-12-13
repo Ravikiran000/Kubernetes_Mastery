@@ -1,5 +1,5 @@
-## Ingress Controller
-
+## K8S Ingress Controller SetUp
+This guide will help you set up Ingress Controllers, generate SSL keys, deploy Ingress Controllers, and manage Docker images in a Kubernetes cluster. We'll also create secrets and configure Route 53 records.
 #### Implementation Steps
 1. create one instance and generate TLS certificate & TLS Keys (This isntance is seperate from our cluster. Using this just for TLS cert & Keys)
 ```
