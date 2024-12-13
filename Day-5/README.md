@@ -42,11 +42,17 @@ kubectl describe secret nginx-tls-default
   - **Repository name:** votingapp
 12. Download the docker images & Pushing the images into a private repository in Dockerhub.
 ```
+# install docker
+curl https:/get.docker.com
+
+# login to dockerhub to push repos
+docker login -u <username>
+
 # pull vote image
 docker pull kiran2361993/testing:latestappvote
 
 # tag the vote image
-docker tag ravikiran000/votingapp:vote
+docker tag kiran2361993/testing:latestappvote ravikiran000/votingapp:vote
 
 #push the image into private repository
 docker push ravikiran000/votingapp:vote
@@ -55,7 +61,7 @@ docker push ravikiran000/votingapp:vote
 docker pull kiran2361993/testing:latestappresults
 
 # tag the result image
-docker tag ravikiran000/votingapp:result
+docker tag kiran2361993/testing:latestappresults ravikiran000/votingapp:result
 
 #push the image into private repository
 docker push ravikiran000/votingapp:result
@@ -64,7 +70,7 @@ docker push ravikiran000/votingapp:result
 docker pull kiran2361993/testing:latestappworker
 
 # tag the worker image
-docker tag ravikiran000/votingapp:worker
+docker tag kiran2361993/testing:latestappworker ravikiran000/votingapp:worker
 
 #push the image into private repository
 docker push ravikiran000/votingapp:worker
