@@ -34,7 +34,8 @@ kubectl create secret tls nginx-tls-default --key="tls.key" --cert="tls.crt"
 ```
 kubectl describe secret nginx-tls-default
 ```
-10. Deploying an voting application. Below is the architecture of the application. It uses vote, results as frontend. worker as backend. redis(in-memory database) & Postgres DB for Database. Application will be deployed using yml manifest. vote, results, worker images will be pulled from dockerhub. Official redis, postgres images will be used
+10. Deploying an voting application. Below is the architecture of the application. It uses vote, results as frontend. worker as backend. redis(in-memory database) & Postgres DB for Database. Application will be deployed using yml manifest. vote, results, worker images will be pulled from dockerhub. Official redis, postgres images will be used.
+
 ![image](https://github.com/user-attachments/assets/05d6f5fe-4197-4bbe-83fd-cc5201183744)
 
 11. Create one private docker repository to store the images. (we pull the public images and re-tag them and store them in private repository)
