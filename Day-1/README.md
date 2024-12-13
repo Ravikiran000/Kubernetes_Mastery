@@ -89,8 +89,10 @@ check kops & kubectl version
 ```   
    source .bashrc
 ```   
-6. Generate a cluster file and save it carefully and do neccessary changes. The below command will give you a yaml manifest but not directly create a cluster, copy that into a file named cluster.yml
+6. Generate a cluster file and save it carefully and do neccessary changes. The below command will give you a yaml manifest but not directly create a cluster, copy that into a file named **cluster.yml**
 ```
+vi cluster.yml
+
 kops create cluster --name=example.in \
 --state=s3://example.in --zones=ap-south-1a,ap-south-1b \
 --node-count=2 --control-plane-count=1 --node-size=t2.medium --control-plane-size=t2.medium \
