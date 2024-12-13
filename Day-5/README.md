@@ -91,7 +91,8 @@ imagePullSecrets:
   - If users are accessing result service, they should be redirected to result service.
        - Defined prefix as result in Ingress resource. If anybody access result.example.com then they'll be redirected to result service, to see results.
    
-  **For redirection we are going to create two A records in Route 53** 
+  **For redirection we are going to create two A records in Route 53**
+  
 17. Go to Route 53 and create the following records:
 - www
 - vote
