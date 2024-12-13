@@ -9,10 +9,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - "result.cloudvishwakarma.in"
+    - "result.ravikiran.shop"
     secretName: nginx-tls-default
   rules:
-  - host: result.cloudvishwakarma.in
+  - host: result.ravikiran.shop
     http:
       paths:
       - path: /
@@ -35,11 +35,11 @@ metadata:
 spec:
   tls:
   - hosts:
-    - "vote.cloudvishwakarma.in"
-    - "www.cloudvishwakarma.in"
+    - "vote.ravikiran.shop"
+    - "www.ravikiran.shop"
     secretName: nginx-tls-default
   rules:
-  - host: vote.cloudvishwakarma.in
+  - host: vote.ravikiran.shop
     http:
       paths:
       - path: /
@@ -49,7 +49,7 @@ spec:
             name: vote
             port:
               number: 80
-  - host: www.cloudvishwakarma.in
+  - host: www.ravikiran.shop
     http: 
       paths:
       - path: /
