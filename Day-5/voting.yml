@@ -137,7 +137,7 @@ spec:
     spec:
       containers:
       - name: result
-        image: kiran2361993/votingapp:results
+        image: ravikiran000/votingapp:results
         ports:
         - containerPort: 80
           name: result
@@ -178,7 +178,7 @@ spec:
     spec:
       containers:
       - name: vote
-        image: kiran2361993/votingapp:vote
+        image: ravikiran000/votingapp:vote
         ports:
         - containerPort: 80
           name: vote
@@ -215,7 +215,7 @@ spec:
         app: worker
     spec: 
       containers: 
-      - image: kiran2361993/votingapp:worker
+      - image: ravikiran000/votingapp:worker
         name: worker
       imagePullSecrets:
       - name: docker-pwd
