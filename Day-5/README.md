@@ -10,7 +10,7 @@ certbot certonly --manual --preferred-challenges=dns --key-type rsa --email your
 ```
 2. Copy the "_acme-challenge.your-dns.in" & create a TXT record in with name as "_acme-challenge" and it's respective value.
 
-##### 3. Wait until the record is in sync and then press enter on the screen"**
+#####   3. Wait until the record is in sync and then press enter on the screen
 
 4. Copy the generated TLS Cert & TLS Keys somewhere. (will be used later in Cluster).
 5. Deploy the KOPS Cluster (same as Day-1 set-up)
