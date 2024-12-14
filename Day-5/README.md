@@ -16,7 +16,17 @@ NodePort and LoadBalancer let you expose a service by specifying that value in t
 - With a LoadBalancer, there needs to be an external service outside of the K8S cluster to provide the public IP address. In AWS, this would be an Application Load Balancer (ALB) in front of your Elastic Kubernetes Service (EKS). Each time a new service is exposed, a new LoadBalancer needs to be created to get a public IP address. Conveniently, the Load balancer provisioning happens automatically for you because of the way the Cloud providers plugin to Kubernetes, so that doesn’t have to be done separately.
 - Ingress is a completely independent resource to your service. As well as enabling routing rules to be consolidated in one place (the Ingress object), this has the advantage of being a separate, decoupled entity that can be created and destroyed separately from any services.
 ## Ingress Controllers
-An ingress controller acts as a reverse proxy and load balancer inside the Kubernetes cluster. It provides an entry point for external traffic based on the defined Ingress rules. Without the Ingress Controller, Ingress resources won’t work.
+- An ingress controller acts as a reverse proxy and load balancer inside the Kubernetes cluster. It provides an entry point for external traffic based on the defined Ingress rules. Without the Ingress Controller, Ingress resources won’t work.
+- The Ingress Controller doesn’t run automatically with a Kubernetes cluster, so you will need to configure your own. An ingress controller is typically a reverse web proxy server implementation in the cluster.
+#### Key Components:
+**Ingress Resource:**
+- A Kubernetes API object that defines rules for routing HTTP and HTTPS traffic.
+- Specifies mappings like hostnames, paths, and back-end services.
+- 
+**Ingress Controller:**
+- Software that reads and processes Ingress resources and manages network traffic accordingly.
+Examples: NGINX Ingress Controller, Traefik, HAProxy, AWS ALB Ingress Controller, etc.
+
 ### Implementation Steps
 1. create one instance and generate TLS certificate & TLS Keys (This isntance is seperate from our cluster. Using this just for TLS cert & Keys)
 ```
