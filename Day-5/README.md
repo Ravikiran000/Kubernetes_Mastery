@@ -25,6 +25,7 @@ NodePort and LoadBalancer let you expose a service by specifying that value in t
 **Ingress Controller:**
 - Software that reads and processes Ingress resources and manages network traffic accordingly.
 Examples: NGINX Ingress Controller, Traefik, HAProxy, AWS ALB Ingress Controller, etc.
+
 ![image](https://github.com/user-attachments/assets/cbf73fc5-3ec9-43bc-af0a-86b8eaebf740)
 
 ### Implementation Steps
