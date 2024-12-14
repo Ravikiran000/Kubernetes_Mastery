@@ -97,9 +97,9 @@ spec:
           initialDelaySeconds: 3
           periodSeconds: 5
 ```
-**In this deployment:**
+### In this deployment:
 Readiness Probe checks if the application is ready to serve traffic by accessing /ready.
 Liveness Probe monitors the health of the container through the /live endpoint.
 
-**Conclusion**
+### Conclusion
 Using Readiness and Liveness Probes in your Kubernetes deployment ensures that your application is reliable, responsive, and capable of self-healing. Start implementing these probes to make your services more robust and fault-tolerant.
