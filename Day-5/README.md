@@ -16,9 +16,7 @@ certbot certonly --manual --preferred-challenges=dns --key-type rsa --email your
 5. Deploy the KOPS Cluster (same as Day-1 set-up)
 6. Deploy Ingress Controller onto the cluster
 ```
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.12.0-beta.0/deploy/static/provider/cloud/deploy.yaml
-
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.3.0/deploy/static/provider/cloud/deploy.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.3.1/deploy/static/provider/cloud/deploy.yaml
 ```
 7. Create 2 files tls.crt & tls.key to store TLS cert & TLS key. Copy the TLS cert & TLS keys into the management instance in /tmp location.
 ```
@@ -90,16 +88,13 @@ kubectl create secret docker-registry docker-pwd --docker-username=<your-usernam
 imagePullSecrets:
   - name: docker-pwd
 ```
-15. Since you deployed the Ingress controller, a network loadbalancer is created. Create an A record in Route53 using the nlb dns and give subdomain as "www". So, if someone is accessing the www.example.com, it will redirect to tour voting app.
-16. Deploy Ingress Resource to route traffic according to the service.
-  - If users are accessing vote service, they should be redirected to vote service.
-       - Defined prefix as vote & www in Ingress resource. If anybody access vote.example.com, www.example.com then they'll be redirected to vote service, to cast a vote.
-  - If users are accessing result service, they should be redirected to result service.
-       - Defined prefix as result in Ingress resource. If anybody access result.example.com then they'll be redirected to result service, to see results.
-   
-  **For redirection we are going to create two A records in Route 53**
-  
-17. Go to Route 53 and create the following records:
+15. Since you deployed the Ingress controller, a network loadbalancer is created. Create an A type record in Route53 using the nlb dns and give subdomain as "www". So, if someone is accessing the www.example.com, it will redirect to your voting app.
+16. Go to Route 53 and create the following records:
 - www
 - vote
 - result
+17. Deploy Ingress Resource to route traffic according to the service.
+  - If users are accessing vote service, they should be redirected to vote service.
+       - Defined prefix as vote & www in Ingress resource. If anybody accesses vote.example.com, www.example.com then they'll be redirected to vote service, to cast a vote.
+  - If users are accessing result service, they should be redirected to result service.
+       - Defined prefix as result in Ingress resource. If anybody access result.example.com then they'll be redirected to result service, to see results.
