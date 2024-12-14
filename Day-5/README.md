@@ -1,5 +1,15 @@
-## K8S Ingress Controller SetUp
+# K8S Ingress Controller SetUp
 This guide will help you set up Ingress Controllers, generate SSL keys, deploy Ingress Controllers, and manage Docker images in a Kubernetes cluster. We'll also create secrets and configure Route 53 records.
+### Kubernetes Ingress
+An Ingress is an API object that manages external access to the services in a cluster, typically HTTP and HTTPS traffic. It acts as a traffic controller that routes incoming requests to the appropriate backend services based on rules defined in the Ingress resource.
+#### When to use Kubernetes Ingress?
+There are many different use cases for Ingress:
+- Exposing multiple services through a single entry point simplifying traffic routing through URIs, paths, headers, or other methods.
+- SSL/TLS termination – simplify certificate management and reduce overhead on your services.
+- Authentication and authorization – implement secure access to your services.
+- Load balancing – even though Ingress and the load balancer service have a lot in common, ingress is internal to the cluster and allows you to route to different services, while the load balancer component is external to the cluster, letting you route traffic to a single service.
+
+
 ### Implementation Steps
 1. create one instance and generate TLS certificate & TLS Keys (This isntance is seperate from our cluster. Using this just for TLS cert & Keys)
 ```
