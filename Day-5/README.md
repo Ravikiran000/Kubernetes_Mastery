@@ -28,7 +28,7 @@ Examples: NGINX Ingress Controller, Traefik, HAProxy, AWS ALB Ingress Controller
 
 ![image](https://github.com/user-attachments/assets/cbf73fc5-3ec9-43bc-af0a-86b8eaebf740)
 
-### Implementation Steps
+### Implementation Steps (Nginx Ingress Controller Setup)
 1. create one instance and generate TLS certificate & TLS Keys (This isntance is seperate from our cluster. Using this just for TLS cert & Keys)
 ```
 sudo snap install --classic certbot
