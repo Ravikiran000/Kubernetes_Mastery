@@ -1,6 +1,7 @@
 # K8S Ingress Controller SetUp
 This guide will help you set up Ingress Controllers, generate SSL keys, deploy Ingress Controllers, and manage Docker images in a Kubernetes cluster. We'll also create secrets and configure Route 53 records.
-### Kubernetes Ingress
+
+## Kubernetes Ingress
 An Ingress is an API object that manages external access to the services in a cluster, typically HTTP and HTTPS traffic. It acts as a traffic controller that routes incoming requests to the appropriate backend services based on rules defined in the Ingress resource.
 #### When to use Kubernetes Ingress?
 There are many different use cases for Ingress:
@@ -8,8 +9,14 @@ There are many different use cases for Ingress:
 - SSL/TLS termination – simplify certificate management and reduce overhead on your services.
 - Authentication and authorization – implement secure access to your services.
 - Load balancing – even though Ingress and the load balancer service have a lot in common, ingress is internal to the cluster and allows you to route to different services, while the load balancer component is external to the cluster, letting you route traffic to a single service.
-
-
+### Ingress vs. LoadBalancer vs. NodePort
+Ingress, LoadBalancer, and NodePort are all ways of exposing services within your K8S cluster for external consumption.
+NodePort and LoadBalancer let you expose a service by specifying that value in the service’s type.
+- With a NodePort, K8S allocates a specific port on each node to the service specified. Any request received on the port by the cluster simply gets forwarded to the service.
+- With a LoadBalancer, there needs to be an external service outside of the K8S cluster to provide the public IP address. In AWS, this would be an Application Load Balancer (ALB) in front of your Elastic Kubernetes Service (EKS). Each time a new service is exposed, a new LoadBalancer needs to be created to get a public IP address. Conveniently, the Load balancer provisioning happens automatically for you because of the way the Cloud providers plugin to Kubernetes, so that doesn’t have to be done separately.
+- Ingress is a completely independent resource to your service. As well as enabling routing rules to be consolidated in one place (the Ingress object), this has the advantage of being a separate, decoupled entity that can be created and destroyed separately from any services.
+## Ingress Controllers
+An ingress controller acts as a reverse proxy and load balancer inside the Kubernetes cluster. It provides an entry point for external traffic based on the defined Ingress rules. Without the Ingress Controller, Ingress resources won’t work.
 ### Implementation Steps
 1. create one instance and generate TLS certificate & TLS Keys (This isntance is seperate from our cluster. Using this just for TLS cert & Keys)
 ```
