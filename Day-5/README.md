@@ -24,6 +24,7 @@ NodePort and LoadBalancer let you expose a service by specifying that value in t
 - Specifies mappings like hostnames, paths, and back-end services.
 - Provides the configuration for routing and load balancing.
 - Acts as a blueprint that the Ingress Controller uses to set up routing.
+
 **Ingress Controller:**
 - A software component running in the cluster that processes Ingress resources.
 - Configures the underlying network (e.g., load balancer, reverse proxy) to match the rules defined in the Ingress resource.
