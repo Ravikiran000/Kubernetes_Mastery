@@ -22,10 +22,10 @@ NodePort and LoadBalancer let you expose a service by specifying that value in t
 **Ingress Resource:**
 - A Kubernetes API object that defines rules for routing HTTP and HTTPS traffic.
 - Specifies mappings like hostnames, paths, and back-end services.
-- 
 **Ingress Controller:**
 - Software that reads and processes Ingress resources and manages network traffic accordingly.
 Examples: NGINX Ingress Controller, Traefik, HAProxy, AWS ALB Ingress Controller, etc.
+![image](https://github.com/user-attachments/assets/cbf73fc5-3ec9-43bc-af0a-86b8eaebf740)
 
 ### Implementation Steps
 1. create one instance and generate TLS certificate & TLS Keys (This isntance is seperate from our cluster. Using this just for TLS cert & Keys)
