@@ -1,6 +1,6 @@
 ## K8S Ingress Controller SetUp
 This guide will help you set up Ingress Controllers, generate SSL keys, deploy Ingress Controllers, and manage Docker images in a Kubernetes cluster. We'll also create secrets and configure Route 53 records.
-#### Implementation Steps
+### Implementation Steps
 1. create one instance and generate TLS certificate & TLS Keys (This isntance is seperate from our cluster. Using this just for TLS cert & Keys)
 ```
 sudo snap install --classic certbot
@@ -10,7 +10,7 @@ certbot certonly --manual --preferred-challenges=dns --key-type rsa --email your
 ```
 2. Copy the "_acme-challenge.your-dns.in" & create a TXT record in with name as "_acme-challenge" and it's respective value.
 
-**3. Wait until the record is in sync and then press enter on the screen"**
+  **3. Wait until the record is in sync and then press enter on the screen"**
 
 4. Copy the generated TLS Cert & TLS Keys somewhere. (will be used later in Cluster).
 5. Deploy the KOPS Cluster (same as Day-1 set-up)
