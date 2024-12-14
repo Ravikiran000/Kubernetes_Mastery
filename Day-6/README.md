@@ -59,9 +59,9 @@ spec:
 ```
 #### In this example:
 - **livenessProbe**: This defines the liveness probe, which Kubernetes uses to check if the application running in the container is still alive. If the liveness check fails, Kubernetes will restart the container.
-- **httpGet**: Similar to the Readiness Probe, but used to determine if the container should be restarted.
-- **initialDelaySeconds**: The probe starts checking 3 seconds after the container starts.
-- **periodSeconds**: The probe checks the endpoint every 5 seconds.
+- **httpGet**: Similar to the Readiness Probe, but used to determine if the container should be restarted. This is the endpoint that Kubernetes will call to check the health of the container. It should return a 200 OK response when the container is healthy.
+- **initialDelaySeconds**: This specifies the number of seconds to wait after the container starts before performing the first liveness probe. This allows the application some time to start up.
+- **periodSeconds**: The probe checks the endpoint every 5 seconds. This defines the interval (in seconds) between consecutive liveness probes. Kubernetes will call the /healthz endpoint every 5 seconds.
 #### Practical Example
 Imagine you have a web server that takes a few seconds to start. You can use a Readiness Probe to ensure it’s ready before receiving traffic. If your web server crashes or becomes unresponsive, the Liveness Probe will restart it automatically.
 
