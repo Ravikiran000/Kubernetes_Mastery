@@ -2,8 +2,7 @@
 ### Overview
 This repository provides a practical demonstration of Kubernetes Sidecar containers and Resource Quotas, as covered in our YouTube video. It includes example configurations and scripts to help you understand and implement these concepts effectively.
 
-### Contents
-#### Sidecar Containers
+### Sidecar Containers
 **Sidecar Containers Overview**: Explanation of Sidecar containers, their use cases, and how they complement the main containers.
 
 **Init Containers**: Containers that run before the main container to check dependencies.
