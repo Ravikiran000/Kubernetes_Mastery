@@ -52,6 +52,8 @@ spec:
         - name: shared-vol
           emptyDir: {}
 
+# Connection btw all containers: The init-container contains source code for kubegame, adapter container writes time into index.html and main container uses nginx:image to host the website.
+
 ---
 apiVersion: v1
 kind: Service
