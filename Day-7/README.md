@@ -22,4 +22,4 @@ This repository provides a practical demonstration of Kubernetes Sidecar contain
 **Namespace Creation**: YAML files to create namespaces with Resource Quotas.
 **Pod Creation**: Steps to deploy pods and observe resource restrictions.
 
-**Resource Limits**: Resource limits are applied on Pods
+**Resource Limits**: Resource limits are applied on Pods. So that no pod takes all the cpu or memory for itself.
