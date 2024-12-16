@@ -15,8 +15,8 @@ This repository provides a practical demonstration of Kubernetes Sidecar contain
 ### Resource Quotas
 #### Resource Quotas Overview: Explanation of how Resource Quotas manage resource usage within namespaces.
 **ResourceQuota**: Defines the maximum and minimum resources that can be consumed by all objects in a namespace.
-**Resource Units**: Mi (Mebibyte), m (millicores), Gi (Gibibyte)
-**Example Setup**: Configurations for applying Resource Quotas to namespaces like Development and Staging.
+   **Resource Units**: Mi (Mebibyte), m (millicores), Gi (Gibibyte)
+   **Example Setup**: Configurations for applying Resource Quotas to namespaces like Development and Staging.
 **Example:**
 
 **Namespace Creation**: YAML files to create namespaces with Resource Quotas.
