@@ -60,6 +60,7 @@ export KUBECONFIG=/root/USER1-CONFIG
 
 vi USER2-CONFIG
 export KUBECONFIG=/root/USER2-CONFIG
+
 # Now check the pods in cli. You will get forbidden error. Because the user doesn't have access to the cluster. You can give access by creating a role for the user in the cluster and creating a rolebinding for binding the role and user. 
 kubectl get pods
 
