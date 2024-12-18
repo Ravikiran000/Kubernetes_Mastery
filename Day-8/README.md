@@ -48,11 +48,25 @@ openssl x509 -req -in ravikiran.csr -CA ca.crt -CAkey ca.key -CAcreateserial -ou
 ```
 #### 4. You can see that .crt & .key are created for each user. (EX: user1.crt, user1.key). Copy all these .crt & .key from management to master server location.
 
-#### 5. Copy the kubeconfig file from the management server into master node. 
+#### 5. Copy the kubeconfig file from the management server and edit it according to your reuirement and deploy the kubeconfig files for users into master node. 
 ```
 cd ~/.kube/
 ls -al
 cat config  # This will you give you the kubeconfig file. Change the crt key in kube config while copying this into master node. You can also get the config file from the s3 bucket.
 
+# save the kubeconfig files like below
+vi USER1-CONFIG
+export KUBECONFIG=/root/USER1-CONFIG
 
+vi USER2-CONFIG
+export KUBECONFIG=/root/USER2-CONFIG
+# Now check the pods in cli. You will get forbidden error. Because the user doesn't have access to the cluster. You can give access by creating a role for the user in the cluster and creating a rolebinding for binding the role and user. 
+kubectl get pods
 
+# In Kubernetes, the kubeconfig file alone (with the user information) establishes who can access the cluster, but it does not define what actions they are allowed to perform within the cluster. This is where Role and RoleBinding come into play.
+
+# Create roles in the cluster from the management server. This is like creating an IAM role (which can be assigned to users to give access) that has access to resources. 
+Deploy the role with 
+echo '
+<role definition>
+kubectl apply -f -
