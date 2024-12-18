@@ -56,18 +56,38 @@ cat config  # This will you give you the kubeconfig file. Change the crt key in 
 
 # save the kubeconfig files like below
 vi USER1-CONFIG
-export KUBECONFIG=/root/USER1-CONFIG
+export KUBECONFIG=/root/USER1-CONFIG  --> To switch to USER1
 
 vi USER2-CONFIG
-export KUBECONFIG=/root/USER2-CONFIG
+export KUBECONFIG=/root/USER2-CONFIG  --> To switch to USER2
 
 # Now check the pods in cli. You will get forbidden error. Because the user doesn't have access to the cluster. You can give access by creating a role for the user in the cluster and creating a rolebinding for binding the role and user. 
 kubectl get pods
 
 # In Kubernetes, the kubeconfig file alone (with the user information) establishes who can access the cluster, but it does not define what actions they are allowed to perform within the cluster. This is where Role and RoleBinding come into play.
 
-# Create roles in the cluster from the management server. This is like creating an IAM role (which can be assigned to users to give access) that has access to resources. 
-Deploy the role with 
+# Create 2 roles in the cluster from the management server. This is like creating an IAM role (which can be assigned to users to give access) that has access to resources. One role will be created in deployment namespace and other will be created in production namespace. Note that these roles will be applicable on namespaces but not on the entire cluster.
+Deploy the role with
+
 echo '
 <role definition>
 kubectl apply -f -
+
+#check the role in namespaces
+kubectl get role -n development
+kubectl get role -n production
+
+# Create role bindings for user1 & user2 to have access to respective roles.
+Deploy the role bindings with 
+
+echo '
+<role binding defintion>
+kubectl apply -f -
+
+#check the role bindings in namespaces
+kubectl get role -n development
+kubectl get role -n production
+
+# now check the access 
+export KUBECONFIG=/root/USER1-CONFIG
+kubectl get pods
